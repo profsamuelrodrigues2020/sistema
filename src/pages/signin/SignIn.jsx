@@ -8,17 +8,19 @@ import {AuthContext} from "../../contexts/auth.jsx";
 
 export default function SignIn(){
 
-    const {signIn} = useContext(AuthContext);
+    const {signIn, loadingAuth} = useContext(AuthContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-   function handleSignIn(e){
-        e.preventDefault();
-         if (email !== "" && password !== "") {
-            signIn(email, password);
-        }
-   }
+   async function handleSignIn(e){
+    e.preventDefault();
+
+    if(email !== '' && password !== ''){
+      await signIn(email, password);
+    }
+
+  }
 
     return(
         <div className="container-center">
@@ -40,7 +42,7 @@ export default function SignIn(){
                         value={password} 
                         onChange={(e)=>setPassword(e.target.value)}
                     />
-                    <button type="submit">Acessar</button>
+                    <button type="submit">{loadingAuth?"Carregando...": "Acessar"}</button>
                 </form>
                 <Link to="/register">Criar Conta</Link>
             </div>
