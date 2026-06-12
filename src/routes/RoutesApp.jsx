@@ -3,6 +3,7 @@ import {Routes, Route} from "react-router-dom"
 //pages
 import SignIn from "../pages/signin/SignIn.jsx";
 import SignUp from "../pages/signup/SignUp.jsx";
+import DashBoard from "../pages/dashboard/DashBoard.jsx";
 
 
 export default function RoutesApp(){
@@ -10,6 +11,7 @@ export default function RoutesApp(){
         <Routes>
             <Route path="/" element={<SignIn/>}/>
             <Route path="/register" element={<SignUp/>} />
+            <Route path="/dashboard" element={<DashBoard/>} />
         </Routes>
     )
 }
