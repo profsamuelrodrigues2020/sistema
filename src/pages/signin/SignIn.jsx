@@ -1,18 +1,24 @@
 import "./SignIn.css";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {Link}from "react-router-dom";
 import logo from "../../assets/logo.png";
+import {AuthContext} from "../../contexts/auth.jsx";
 
 
 
 export default function SignIn(){
+
+    const {signIn} = useContext(AuthContext);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    useEffect(()=>{
-        console.log(email)
-        console.log(password)
-    }, [email, password])
+   function handleSignIn(e){
+        e.preventDefault();
+         if (email !== "" && password !== "") {
+            signIn(email, password);
+        }
+   }
 
     return(
         <div className="container-center">
@@ -20,7 +26,7 @@ export default function SignIn(){
                 <div className="login-area">
                     <img src={logo} alt="Logo do Sistema" />
                 </div>
-                <form>
+                <form onSubmit={handleSignIn} >
                     <h1>Entrar</h1>
                     <input 
                         type="text" 

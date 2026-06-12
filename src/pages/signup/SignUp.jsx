@@ -10,11 +10,13 @@ export default function SignUp(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    useEffect(()=>{
-        console.log(name)
-        console.log(email)
-        console.log(password)
-    }, [email, password, name])
+    function handleSubmit(e){
+        e.preventDefault();
+
+        if (name !== ""  && email !== "" && password !== "") {
+            alert("Fazer Cadastro")
+        }
+    }
 
     return(
         <div className="container-center">
@@ -22,7 +24,7 @@ export default function SignUp(){
                 <div className="login-area">
                     <img src={logo} alt="Logo do Sistema" />
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <h1>Entrar</h1>
                     <input 
                         type="text" 
