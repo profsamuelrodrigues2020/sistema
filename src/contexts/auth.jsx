@@ -8,7 +8,6 @@ import { toast } from 'react-toastify'
 
 export const AuthContext = createContext({});
 
-
 function AuthProvider({ children }){
   const [user, setUser] = useState(null)
   const [loadingAuth, setLoadingAuth] = useState(false);
@@ -16,17 +15,23 @@ function AuthProvider({ children }){
 
   const navigate = useNavigate();
 
+
   useEffect(() => {
     async function loadUser(){
       const storageUser = localStorage.getItem('@ticketsPRO')
+
       if(storageUser){
         setUser(JSON.parse(storageUser))
         setLoading(false);
       }
+
+
       setLoading(false);
+
     }
+
     loadUser();
-  },[])
+  }, [])
 
 
   async function signIn(email, password){
@@ -59,6 +64,7 @@ function AuthProvider({ children }){
     }) 
 
   }
+
 
   // Cadastrar um novo user
   async function signUp(email, password, name){
@@ -98,6 +104,7 @@ function AuthProvider({ children }){
 
   }
 
+
   function storageUser(data){
     localStorage.setItem('@ticketsPRO', JSON.stringify(data))
   }
@@ -117,7 +124,9 @@ function AuthProvider({ children }){
         signUp,
         logout,
         loadingAuth,
-        loading
+        loading,
+        storageUser,
+        setUser
       }}
     >
       {children}
